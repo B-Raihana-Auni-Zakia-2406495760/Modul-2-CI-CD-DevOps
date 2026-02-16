@@ -1,3 +1,6 @@
+Halo Kak, mohon maaf sebelumnya kak. Tugas modul 1 ini sudah saya kerjakan tepat waktu, tapi saya salah push ke repository akun pribadi bukan ke github organization. 
+Repo ini hasil migrasi dari hasil pekerjaan saya yang di push ke akun pribadi dan sudah saya perbaiki. Terima kasih kak.
+
 Reflection 1
 
 Sejauh ini, dalam mengerjakan modul saya sudah menerapkan clean code, 
