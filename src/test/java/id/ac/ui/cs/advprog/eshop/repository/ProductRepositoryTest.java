@@ -38,6 +38,17 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testCreateProductWithNullId() {
+        Product product = new Product();
+        product.setProductName("Product No ID");
+        product.setProductQuantity(10);
+        productRepository.create(product);
+
+        assertNotNull(product.getProductId());
+        assertFalse(product.getProductId().isEmpty());
+    }
+
+    @Test
     void testFindAllIfEmpty() {
         Iterator<Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
@@ -67,6 +78,29 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testFindById() {
+        Product product = new Product();
+        product.setProductId("uuid-123");
+        product.setProductName("Product Cari");
+        productRepository.create(product);
+
+        Product foundProduct = productRepository.findById("uuid-123");
+        assertNotNull(foundProduct);
+        assertEquals("Product Cari", foundProduct.getProductName());
+    }
+
+    @Test
+    void testFindByIdNotFound() {
+        Product product = new Product();
+        product.setProductId("uuid-existing");
+        product.setProductName("Product Ada");
+        productRepository.create(product);
+
+        Product foundProduct = productRepository.findById("uuid-ga-ada");
+        assertNull(foundProduct);
+    }
+
+    @Test
     void testEditProduct() {
         Product product = new Product();
         product.setProductId("123");
@@ -86,6 +120,20 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testEditProductNotFound() {
+        Product product = new Product();
+        product.setProductId("uuid-existing");
+        product.setProductName("Product Ada");
+        productRepository.create(product);
+
+        Product nonExistent = new Product();
+        nonExistent.setProductId("ghost-id");
+
+        Product result = productRepository.edit(nonExistent);
+        assertNull(result);
+    }
+
+    @Test
     void testDeleteProduct() {
         Product product = new Product();
         product.setProductId("del-1");
@@ -93,26 +141,8 @@ class ProductRepositoryTest {
         productRepository.create(product);
 
         productRepository.delete("del-1");
-
-        Iterator<Product> iterator = productRepository.findAll();
-        boolean found = false;
-        while(iterator.hasNext()){
-            if(iterator.next().getProductId().equals("del-1")){
-                found = true;
-                break;
-            }
-        }
-        assertFalse(found);
-    }
-
-    @Test
-    void testEditProductNotFound() {
-        Product nonExistent = new Product();
-        nonExistent.setProductId("ghost-id");
-
-        Product result = productRepository.edit(nonExistent);
-
-        assertNull(result);
+        Product deletedProduct = productRepository.findById("del-1");
+        assertNull(deletedProduct);
     }
 
     @Test

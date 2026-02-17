@@ -1,0 +1,25 @@
+name: Code Quality Analysis (PMD)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pmd:
+    name: Run PMD Analysis
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Run PMD
+        uses: pmd/pmd-github-action@v2
+        with:
+          rulesets: 'rulesets/java/quickstart.xml'
+          sourcePath: 'src/main/java'
+          analyzeModifiedFilesOnly: false
+          version: '7.0.0-rc4'
