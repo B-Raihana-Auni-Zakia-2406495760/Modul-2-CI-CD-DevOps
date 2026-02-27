@@ -1,8 +1,8 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
-import id.ac.ui.cs.advprog.eshop.service.CarCUDServiceImpl;
-import id.ac.ui.cs.advprog.eshop.service.CarFindServiceImpl;
+import id.ac.ui.cs.advprog.eshop.service.CarCUDService;
+import id.ac.ui.cs.advprog.eshop.service.CarFindService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +15,10 @@ import java.util.List;
 public class CarController {
 
     @Autowired
-    private CarCUDServiceImpl carCUDservice;
+    private CarCUDService carCUDservice;
 
     @Autowired
-    private CarFindServiceImpl carFindservice;
+    private CarFindService carFindservice;
 
     @GetMapping("/createCar")
     public String createCarPage(Model model) {
