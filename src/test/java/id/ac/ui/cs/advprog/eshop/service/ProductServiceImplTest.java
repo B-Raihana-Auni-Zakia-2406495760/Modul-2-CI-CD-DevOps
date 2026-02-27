@@ -52,7 +52,7 @@ class ProductServiceImplTest {
         updatedData.setProductId(product.getProductId());
         updatedData.setProductName("After Edit");
         updatedData.setProductQuantity(20);
-        productService.edit(updatedData);
+        productService.update(updatedData);
         Product result = productService.findById(product.getProductId());
         assertEquals("After Edit", result.getProductName());
         assertEquals(20, result.getProductQuantity());
@@ -64,7 +64,7 @@ class ProductServiceImplTest {
         product.setProductName("Delete Me");
         productService.create(product);
         String id = product.getProductId();
-        productService.delete(id);
+        productService.deleteProductById(id);
         Product result = productService.findById(id);
         assertNull(result);
     }

@@ -113,7 +113,7 @@ class ProductRepositoryTest {
         updatedProduct.setProductName("Sampo Edit");
         updatedProduct.setProductQuantity(20);
 
-        Product result = productRepository.edit(updatedProduct);
+        Product result = productRepository.update(updatedProduct);
 
         assertEquals("Sampo Edit", result.getProductName());
         assertEquals(20, result.getProductQuantity());
@@ -129,7 +129,7 @@ class ProductRepositoryTest {
         Product nonExistent = new Product();
         nonExistent.setProductId("ghost-id");
 
-        Product result = productRepository.edit(nonExistent);
+        Product result = productRepository.update(nonExistent);
         assertNull(result);
     }
 
@@ -140,13 +140,13 @@ class ProductRepositoryTest {
         product.setProductName("Akan Dihapus");
         productRepository.create(product);
 
-        productRepository.delete("del-1");
+        productRepository.deleteProductById("del-1");
         Product deletedProduct = productRepository.findById("del-1");
         assertNull(deletedProduct);
     }
 
     @Test
     void testDeleteProductNotFound() {
-        assertDoesNotThrow(() -> productRepository.delete("ghost-id"));
+        assertDoesNotThrow(() -> productRepository.deleteProductById("ghost-id"));
     }
 }
