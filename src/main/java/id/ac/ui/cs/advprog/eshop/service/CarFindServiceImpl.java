@@ -9,16 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class CarServiceImpl implements CarService {
+public class CarFindServiceImpl implements CarFindService {
     @Autowired
     private CarRepository carRepository;
-
-    @Override
-    public Car create(Car car) {
-        // TODO Auto-generated method stub
-        carRepository.create(car);
-        return car;
-    }
 
     @Override
     public List<Car> findAll() {
@@ -32,17 +25,5 @@ public class CarServiceImpl implements CarService {
     public Car findById(String carId) {
         Car car = carRepository.findById(carId);
         return car;
-    }
-
-    @Override
-    public void update(String carId, Car car) {
-        // TODO Auto-generated method stub
-        carRepository.update(carId, car);
-    }
-
-    @Override
-    public void deleteCarById(String carId) {
-        // TODO Auto-generated method stub
-        carRepository.delete(carId);
     }
 }

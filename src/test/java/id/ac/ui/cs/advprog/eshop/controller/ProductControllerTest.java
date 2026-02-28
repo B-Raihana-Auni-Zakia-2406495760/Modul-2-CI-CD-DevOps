@@ -9,6 +9,7 @@ import org.springframework.ui.ConcurrentModel;
 import org.springframework.ui.Model;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 @SpringBootTest
 class ProductControllerTest {
@@ -22,7 +23,7 @@ class ProductControllerTest {
     void testCreateProductPage() {
         Model model = new ConcurrentModel();
         String viewName = productController.createProductPage(model);
-        assertEquals("createProduct", viewName);
+        assertEquals("CreateProduct", viewName);
         assertTrue(model.containsAttribute("product"));
     }
 
@@ -43,7 +44,7 @@ class ProductControllerTest {
     void testProductListPage() {
         Model model = new ConcurrentModel();
         String viewName = productController.productListPage(model);
-        assertEquals("productList", viewName);
+        assertEquals("ProductList", viewName);
         assertTrue(model.containsAttribute("products"));
     }
 
@@ -55,7 +56,7 @@ class ProductControllerTest {
         String id = product.getProductId();
         Model model = new ConcurrentModel();
         String viewName = productController.editProductPage(id, model);
-        assertEquals("editProduct", viewName);
+        assertEquals("EditProduct", viewName);
         assertTrue(model.containsAttribute("product"));
     }
 
@@ -65,7 +66,8 @@ class ProductControllerTest {
         product.setProductName("Original");
         productService.create(product);
         product.setProductName("Changed");
-        String viewName = productController.editProductPost(product);
+        Model model = mock(Model.class);
+        String viewName = productController.editProductPost(product, model);
         assertEquals("redirect:list", viewName);
         Product updated = productService.findById(product.getProductId());
         assertEquals("Changed", updated.getProductName());
@@ -78,7 +80,7 @@ class ProductControllerTest {
         productService.create(product);
         String id = product.getProductId();
         String viewName = productController.deleteProduct(id);
-        assertEquals("redirect:../list", viewName);
+        assertEquals("redirect:list", viewName);
         Product deleted = productService.findById(id);
         assertNull(deleted);
     }
