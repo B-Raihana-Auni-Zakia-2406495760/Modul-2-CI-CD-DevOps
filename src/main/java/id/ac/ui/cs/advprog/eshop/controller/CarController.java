@@ -33,7 +33,7 @@ public class CarController {
         return "redirect:list";  // redirect ke list, bukan listCar
     }
 
-    @GetMapping("/listCar")
+    @GetMapping("/list")
     public String carListPage(Model model){
         List<Car> allCars = carFindservice.findAll();
         model.addAttribute("cars", allCars);
