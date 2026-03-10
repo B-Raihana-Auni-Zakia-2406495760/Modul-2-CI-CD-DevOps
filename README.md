@@ -47,3 +47,19 @@ MODULE 3
 - Fragility: jika CarController dan ProductController digabung dalam satu file, mengubah logika produk berpotensi merusak fungsionalitas mobil dengan tidak sengaja
 - Rigidity: jika CarServiceImpl bergantung langsung pada CarRepositoryImpl, migrasi ke database SQL akan harus merombak baris kode di service
 - Coupling Tinggi: satu interface besar yang menangani segalanya, jika ada satu perubahan kecil pada satu metode, seluruh kelas yang mengimplementasikan interface tersebut ikut berpengaruh
+
+MODULE 4
+1. Alur Test-Driven Development (TDD) saangat membantu dan bermanfaat untuk saya pada pengerjaan module 4 ini. Alur TDD membuat kita berpikir mendalam tentang requirements dan edge cases. Contohnya saat pembuatan tes untuk model Order, ekspektasi saat list produk kosong harus didefinisikan dengan baik. Alur TDD membuat kita sangat percaya diri bahwa kode yang diimplementasikan akan benar-benar memenuhi spesifikasi. 
+
+2. F.I.R.S.T. Principles in Unit Testing
+- Fast: Kode unit test saya sudah berhasil mengikuti prinsip Fast. Waktu yang saya butuhkan untuk mengeksekusi tes saangat cepat karena tes berjalan secara lokal dan tidak bergantung pada sistem eksternal. Pada kode OrderServiceImplTest dan PaymentServiceImplTest, saya menggunakan Mocking agar bisa mengisolasi logika servis dan mengeksekusi tesnya menjadi sangat ringan.
+- Independent: Kode unit test saya sudah berhasil mengikuti prinsip Independent. Saya menggunakan anotasi @BeforeEach pada metode setUp() untuk memastikan dummy data dan class diinisialisasi ulang sebelum metode @Test dijalankan.
+- Repeatable: Kode unit test saya sudah berhasil mengikuti prinsip Repeatable. Tes bisa dijalankan berkali-kali di environment manapun dan hasilnya akan selalu konsisten karena tidak terikat pada dependensi dinamis.
+- Self-Validating: Kode unit test saya sudah berhasil mengikuti prinsip Self-Validating. Seluruh proses validasi sudah dieksekusi secara otomatis oleh fungsi assertion dari JUnit, seperti assertEquals, assertThrows, assertTrue, dan assertNull. Tes hanya akan membarikan output akhir berupa Passed atau Failed.
+- Timely: Kode unit test saya sudah berhasil mengikuti prinsip Timely. Unit test selalu ditulis sebelum implementasi kode dikerjakan.
+
+Bonus 2
+1. Secara fungsional kode sudah berjalan dengan baik, tetapi ada kode di service yang bisa disederhanakan.
+2. Saya memperbaiki kode pada OrderServiceImpl agar lebih efisien dan menghapus @Setter pada Order.java.
+3. Dispensables. tedapat @Setter dan setStatus pada Order.java. dan di OrderServiceImpl.java dia membuat objek Order baru padahal bisa langsung mengubah objek yang sudah ada
+4. Menghilangkan pembuatan objek baru di updateStatus dan pake setter langsung di OrderServiceImpl.java . dan menghapus @Setter di Order.java
