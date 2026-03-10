@@ -20,20 +20,20 @@ public class CarController {
     @Autowired
     private CarFindService carFindservice;
 
-    @GetMapping("/createCar")
+    @GetMapping("/create")
     public String createCarPage(Model model) {
         Car car = new Car();
         model.addAttribute("car", car);
         return "CreateCar";
     }
 
-    @PostMapping("/createCar")
+    @PostMapping("/create")
     public String createCarPost(@ModelAttribute Car car, Model model) {
         carCUDservice.create(car);
-        return "redirect:listCar";
+        return "redirect:list";  // redirect ke list, bukan listCar
     }
 
-    @GetMapping("/listCar")
+    @GetMapping("/list")
     public String carListPage(Model model){
         List<Car> allCars = carFindservice.findAll();
         model.addAttribute("cars", allCars);
@@ -53,9 +53,9 @@ public class CarController {
         return "redirect:listCar";
     }
 
-    @PostMapping("/deleteCar")
-    public String deleteCar(@RequestParam("carId") String carId) {
+    @GetMapping("/delete/{carId}")
+    public String deleteCar(@PathVariable("carId") String carId) {
         carCUDservice.deleteCarById(carId);
-        return "redirect:listCar";
+        return "redirect:list";
     }
 }
