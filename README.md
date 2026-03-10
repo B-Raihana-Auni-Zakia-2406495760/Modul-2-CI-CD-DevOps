@@ -57,3 +57,9 @@ MODULE 4
 - Repeatable: Kode unit test saya sudah berhasil mengikuti prinsip Repeatable. Tes bisa dijalankan berkali-kali di environment manapun dan hasilnya akan selalu konsisten karena tidak terikat pada dependensi dinamis.
 - Self-Validating: Kode unit test saya sudah berhasil mengikuti prinsip Self-Validating. Seluruh proses validasi sudah dieksekusi secara otomatis oleh fungsi assertion dari JUnit, seperti assertEquals, assertThrows, assertTrue, dan assertNull. Tes hanya akan membarikan output akhir berupa Passed atau Failed.
 - Timely: Kode unit test saya sudah berhasil mengikuti prinsip Timely. Unit test selalu ditulis sebelum implementasi kode dikerjakan.
+
+Bonus 2
+1. Secara fungsional kode sudah berjalan dengan baik, tetapi ada kode di service yang bisa disederhanakan.
+2. Saya juga memperbaiki kode pada OrderServiceImpl agar lebih efisien dan menghapus @Setter pada Order.java.
+3. Dispensables. tedapat @Setter dan setStatus pada Order.java. dan di OrderServiceImpl.java dia membuat objek Order baru padahal bisa langsung mengubah objek yang sudah ada
+4. Menghilangkan pembuatan objek baru di updateStatus dan pake setter langsung di OrderServiceImpl.java . dan menghapus @Setter di Order.java
