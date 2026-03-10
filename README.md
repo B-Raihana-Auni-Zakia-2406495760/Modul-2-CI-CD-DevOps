@@ -60,6 +60,6 @@ MODULE 4
 
 Bonus 2
 1. Secara fungsional kode sudah berjalan dengan baik, tetapi ada kode di service yang bisa disederhanakan.
-2. Saya juga memperbaiki kode pada OrderServiceImpl agar lebih efisien dan menghapus @Setter pada Order.java.
+2. Saya memperbaiki kode pada OrderServiceImpl agar lebih efisien dan menghapus @Setter pada Order.java.
 3. Dispensables. tedapat @Setter dan setStatus pada Order.java. dan di OrderServiceImpl.java dia membuat objek Order baru padahal bisa langsung mengubah objek yang sudah ada
 4. Menghilangkan pembuatan objek baru di updateStatus dan pake setter langsung di OrderServiceImpl.java . dan menghapus @Setter di Order.java
