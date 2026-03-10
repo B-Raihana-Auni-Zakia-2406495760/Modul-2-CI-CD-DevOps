@@ -20,17 +20,17 @@ public class CarController {
     @Autowired
     private CarFindService carFindservice;
 
-    @GetMapping("/createCar")
+    @GetMapping("/create")
     public String createCarPage(Model model) {
         Car car = new Car();
         model.addAttribute("car", car);
         return "CreateCar";
     }
 
-    @PostMapping("/createCar")
+    @PostMapping("/create")
     public String createCarPost(@ModelAttribute Car car, Model model) {
         carCUDservice.create(car);
-        return "redirect:listCar";
+        return "redirect:list";  // redirect ke list, bukan listCar
     }
 
     @GetMapping("/listCar")
